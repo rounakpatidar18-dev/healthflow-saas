@@ -8,7 +8,7 @@ class Api::V1::AuthController < Api::V1::BaseController
     user = User.new(user_params)
     user.tenant = tenant
     user.role = :admin
-  
+
     if user.save
       token = Auth::JsonWebToken.encode(user_id: user.id)
       render json: { token: token }, status: :created
