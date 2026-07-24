@@ -9,6 +9,9 @@ class User < ApplicationRecord
   validate :tenant_must_match_current
 
   private
+  def set_default_role
+    self.role ||= :staff
+  end
 
   def tenant_must_match_current
     return unless Current.tenant
